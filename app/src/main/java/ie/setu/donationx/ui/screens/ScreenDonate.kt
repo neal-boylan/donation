@@ -36,6 +36,7 @@ fun ScreenDonate(modifier: Modifier = Modifier,
     var paymentAmount by remember { mutableIntStateOf(10) }
     var paymentMessage by remember { mutableStateOf("Go Homer!") }
     var totalDonated by remember { mutableIntStateOf(0) }
+    var aTotalSumAmount = donations.sumOf { it.paymentAmount }
 
     Column {
         Column(
@@ -62,7 +63,7 @@ fun ScreenDonate(modifier: Modifier = Modifier,
             }
             ProgressBar(
                 modifier = modifier,
-                totalDonated = totalDonated)
+                totalDonated = aTotalSumAmount)
             MessageInput(
                 modifier = modifier,
                 onMessageChange = { paymentMessage = it }
@@ -73,7 +74,9 @@ fun ScreenDonate(modifier: Modifier = Modifier,
                     paymentAmount = paymentAmount,
                     message = paymentMessage),
                 donations = donations,
-                onTotalDonatedChange = { totalDonated = it }
+                // onTotalDonatedChange = { totalDonated = it },
+                onTotalDonatedChange = { totalDonated = aTotalSumAmount },
+                aTotalSumAmount = aTotalSumAmount
             )
         }
     }
