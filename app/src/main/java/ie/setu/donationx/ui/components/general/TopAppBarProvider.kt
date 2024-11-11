@@ -2,6 +2,7 @@ package ie.setu.donationx.ui.components.general
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.List
@@ -26,7 +27,9 @@ import ie.setu.donationx.ui.theme.DonationXTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopAppBarProvider(currentScreen: AppDestination)
+fun TopAppBarProvider(currentScreen: AppDestination,
+                      canNavigateBack: Boolean,
+                      navigateUp: () -> Unit = {})
 {
     TopAppBar(
         title = {
@@ -39,14 +42,26 @@ fun TopAppBarProvider(currentScreen: AppDestination)
             containerColor = MaterialTheme.colorScheme.primary
         ),
         navigationIcon = {
-            Icon(
-                imageVector = Icons.Filled.Menu,
-                contentDescription = "Menu Button",
-                tint = Color.White,
-                modifier = Modifier.size(30.dp)
-            )
+            if (canNavigateBack) {
+                IconButton(onClick = navigateUp) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Back Button",
+                        tint = Color.White,
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
+            }
+            else
+                Icon(
+                    imageVector = Icons.Filled.Menu,
+                    contentDescription = "Menu Button",
+                    tint = Color.White,
+                    modifier = Modifier.size(30.dp)
+                )
+
         },
-        actions = { }
+        actions = { DropDownMenu() }
     )
 }
 
@@ -54,6 +69,7 @@ fun TopAppBarProvider(currentScreen: AppDestination)
 @Composable
 fun TopAppBarPreview() {
     DonationXTheme {
-        TopAppBarProvider(Donate)
+        TopAppBarProvider(Donate,
+            true)
     }
 }

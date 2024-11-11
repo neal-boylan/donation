@@ -53,15 +53,18 @@ class MainActivity : ComponentActivity() {
 fun DonationXApp(modifier: Modifier = Modifier,
                  navController: NavHostController = rememberNavController()) {
     val donations = remember { mutableStateListOf<DonationModel>() }
-    var selectedMenuItem by remember { mutableStateOf<MenuItem?>(MenuItem.Donate) }
+    // var selectedMenuItem by remember { mutableStateOf<MenuItem?>(MenuItem.Donate) }
     val currentNavBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = currentNavBackStackEntry?.destination
-    val currentBottomScreen =
-        allDestinations.find { it.route == currentDestination?.route } ?: Report
+    val currentBottomScreen = allDestinations.find { it.route == currentDestination?.route } ?: Report
 
     Scaffold(
         modifier = modifier,
-        topBar = { TopAppBarProvider(currentScreen = currentBottomScreen) },
+        topBar = {
+            TopAppBarProvider(
+                currentScreen = currentBottomScreen,
+                canNavigateBack = navController.previousBackStackEntry != null
+            ) { navController.navigateUp() } },
         content = { paddingValues ->
             NavHostProvider(
                 modifier = modifier,

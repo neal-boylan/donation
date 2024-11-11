@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ie.setu.donationx.data.DonationModel
+import ie.setu.donationx.ui.screens.ScreenAbout
 import ie.setu.donationx.ui.screens.ScreenDonate
 import ie.setu.donationx.ui.screens.ScreenReport
 
@@ -31,6 +32,10 @@ fun NavHostProvider(
         composable(route = Report.route) {
             //call our 'Report' Screen Here
             ScreenReport(modifier = modifier, donations = donations)
+        }
+        composable(route = About.route) {
+            //call our 'About' Screen Here
+            ScreenAbout(modifier = modifier)
         }
     }
 }
