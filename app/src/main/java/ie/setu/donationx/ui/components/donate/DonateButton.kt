@@ -41,24 +41,25 @@ fun DonateButton(
     donation: DonationModel,
     donations: SnapshotStateList<DonationModel>,
     onTotalDonatedChange: (Int) -> Unit,
-    aTotalSumAmount: Int
+
 ) {
-    var totalDonated by remember { mutableIntStateOf(0) }
+    var totalDonated = donations.sumOf { it.paymentAmount }
     val context = LocalContext.current  // for the Toast
     val message = stringResource(R.string.limitExceeded,donation.paymentAmount)
 
     Row {
         Button(
             onClick = {
-                if(aTotalSumAmount + donation.paymentAmount > 10000){
-                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-                }else {
+                if(totalDonated + donation.paymentAmount <= 10000) {
                     totalDonated+=donation.paymentAmount
                     onTotalDonatedChange(totalDonated)
                     donations.add(donation)
                     Timber.i("Donation info : $donation")
                     Timber.i("Donation List info : ${donations.toList()}")
                 }
+                else
+                    Toast.makeText(context,message,
+                        Toast.LENGTH_SHORT).show()
             },
             elevation = ButtonDefaults.buttonElevation(20.dp)
         ) {
@@ -93,14 +94,14 @@ fun DonateButton(
                         fontSize = 20.sp,
                         color = MaterialTheme.colorScheme.secondary)
                 ) {
-                    append(aTotalSumAmount.toString())
+                    append(totalDonated.toString())
                 }
             })
     }
 }
 
 
-/*
+
 @Preview(showBackground = true)
 @Composable
 fun DonateButtonPreview() {
@@ -111,4 +112,4 @@ fun DonateButtonPreview() {
             donations = fakeDonations.toMutableStateList()
         ) {}
     }
-}*/
+}
