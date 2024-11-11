@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId = "ie.setu.donationx"
         minSdk = 30
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.numberPicker)
     implementation(libs.timber)
     implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
