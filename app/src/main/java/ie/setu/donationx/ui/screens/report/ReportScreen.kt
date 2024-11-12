@@ -27,6 +27,7 @@ import ie.setu.donationx.ui.theme.DonationXTheme
 
 @Composable
 fun ReportScreen(modifier: Modifier = Modifier,
+                 onClickDonationDetails: (Int) -> Unit,
                  reportViewModel: ReportViewModel = hiltViewModel()) {
 
     val donations = reportViewModel.uiDonations.collectAsState().value
@@ -51,6 +52,7 @@ fun ReportScreen(modifier: Modifier = Modifier,
             } else {
                 DonationCardList(
                     donations = donations,
+                    onClickDonationDetails = onClickDonationDetails,
                     onDeleteDonation = {
                             donation: DonationModel
                         -> reportViewModel.deleteDonation(donation)
@@ -98,6 +100,7 @@ fun PreviewReportScreen(modifier: Modifier = Modifier,
                 DonationCardList(
                     donations = donations,
                     onDeleteDonation = {},
+                    onClickDonationDetails = { },
                 )
         }
     }

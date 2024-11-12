@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ie.setu.donationx.data.DonationModel
 import ie.setu.donationx.ui.screens.about.AboutScreen
+import ie.setu.donationx.ui.screens.details.DetailsScreen
 import ie.setu.donationx.ui.screens.donate.DonateScreen
 import ie.setu.donationx.ui.screens.report.ReportScreen
 
@@ -31,11 +32,28 @@ fun NavHostProvider(
         }
         composable(route = Report.route) {
             //call our 'Report' Screen Here
-            ReportScreen(modifier = modifier)
+            ReportScreen(modifier = modifier,
+                onClickDonationDetails = {
+                        donationId : Int -> navController.navigateToDonationDetails(donationId)
+                },)
         }
         composable(route = About.route) {
             //call our 'About' Screen Here
             AboutScreen(modifier = modifier)
         }
+        composable(
+            route = Details.route,
+            arguments = Details.arguments
+        )
+        { navBackStackEntry ->
+            val id = navBackStackEntry.arguments?.getInt(Details.idArg)
+            if (id != null) {
+                DetailsScreen()
+            }
+        }
     }
+}
+
+private fun NavHostController.navigateToDonationDetails(donationId: Int) {
+    this.navigate("details/$donationId")
 }

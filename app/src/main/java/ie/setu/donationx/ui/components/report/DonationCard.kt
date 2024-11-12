@@ -46,7 +46,8 @@ fun DonationCard(
     paymentAmount: Int,
     message: String,
     dateCreated: String,
-    onClickDelete: () -> Unit
+    onClickDelete: () -> Unit,
+    onClickDonationDetails: () -> Unit
 ) {
     Card(
         colors = CardDefaults.cardColors(
@@ -59,7 +60,8 @@ fun DonationCard(
             paymentAmount,
             message,
             dateCreated,
-            onClickDelete)
+            onClickDelete,
+            onClickDonationDetails)
     }
 }
 
@@ -69,7 +71,8 @@ private fun DonationCardContent(
     paymentAmount: Int,
     message: String,
     dateCreated: String,
-    onClickDelete: () -> Unit
+    onClickDelete: () -> Unit,
+    onClickDonationDetails: () -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
     var showDeleteConfirmDialog by remember { mutableStateOf(false) }
@@ -116,7 +119,7 @@ private fun DonationCardContent(
                 Text(modifier = Modifier.padding(vertical = 16.dp), text = message)
                 Row(modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween) {
-                    FilledTonalButton(onClick = {}) {
+                    FilledTonalButton(onClick = onClickDonationDetails) {
                         Text(text = "Show More...")
                     }
 
@@ -174,7 +177,8 @@ fun DonationCardPreview() {
             paymentAmount = 100,
             message = "A description of my issue...",
             dateCreated = DateFormat.getDateTimeInstance().format(Date()),
-            onClickDelete = {  }
+            onClickDelete = {  },
+            onClickDonationDetails = {  }
         )
     }
 }
