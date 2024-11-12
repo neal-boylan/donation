@@ -1,4 +1,4 @@
-package ie.setu.donationx.ui.screens
+package ie.setu.donationx.ui.screens.donate
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,7 +28,7 @@ import ie.setu.donationx.ui.components.donate.WelcomeText
 import ie.setu.donationx.ui.theme.DonationXTheme
 
 @Composable
-fun ScreenDonate(modifier: Modifier = Modifier,
+fun DonateScreen(modifier: Modifier = Modifier,
                  donations: SnapshotStateList<DonationModel>
 ) {
 
@@ -84,7 +84,7 @@ fun ScreenDonate(modifier: Modifier = Modifier,
 @Composable
 fun DonateScreenPreview() {
     DonationXTheme {
-        ScreenDonate( modifier = Modifier,
+        DonateScreen( modifier = Modifier,
             donations = fakeDonations.toMutableStateList())
     }
 }

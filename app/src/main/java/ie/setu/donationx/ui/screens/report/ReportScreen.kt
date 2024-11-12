@@ -1,4 +1,4 @@
-package ie.setu.donationx.ui.screens
+package ie.setu.donationx.ui.screens.report
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,7 +24,7 @@ import ie.setu.donationx.ui.components.report.ReportText
 import ie.setu.donationx.ui.theme.DonationXTheme
 
 @Composable
-fun ScreenReport(modifier: Modifier = Modifier,
+fun ReportScreen(modifier: Modifier = Modifier,
                  donations: SnapshotStateList<DonationModel>
 ) {
 
@@ -58,7 +58,7 @@ fun ScreenReport(modifier: Modifier = Modifier,
 @Composable
 fun ReportScreenPreview() {
     DonationXTheme {
-        ScreenReport( modifier = Modifier,
+        ReportScreen( modifier = Modifier,
             donations = fakeDonations.toMutableStateList()
         )
     }

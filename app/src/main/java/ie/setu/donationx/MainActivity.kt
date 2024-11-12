@@ -11,9 +11,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
@@ -24,10 +22,7 @@ import ie.setu.donationx.navigation.NavHostProvider
 import ie.setu.donationx.navigation.Report
 import ie.setu.donationx.navigation.allDestinations
 import ie.setu.donationx.ui.components.general.BottomAppBarProvider
-import ie.setu.donationx.ui.components.general.MenuItem
 import ie.setu.donationx.ui.components.general.TopAppBarProvider
-import ie.setu.donationx.ui.screens.ScreenDonate
-import ie.setu.donationx.ui.screens.ScreenReport
 import ie.setu.donationx.ui.theme.DonationXTheme
 
 class MainActivity : ComponentActivity() {
