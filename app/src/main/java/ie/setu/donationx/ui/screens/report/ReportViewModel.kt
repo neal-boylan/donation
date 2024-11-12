@@ -14,10 +14,14 @@ import javax.inject.Inject
 @HiltViewModel
 class ReportViewModel @Inject
 constructor(private val repository: RoomRepository) : ViewModel() {
-    private val _donations
-            = MutableStateFlow<List<DonationModel>>(emptyList())
-    val uiDonations: StateFlow<List<DonationModel>>
-            = _donations.asStateFlow()
+    private val _donations = MutableStateFlow<List<DonationModel>>(emptyList())
+    val uiDonations: StateFlow<List<DonationModel>> = _donations.asStateFlow()
+
+    fun deleteDonation(donation: DonationModel) {
+        viewModelScope.launch {
+            repository.delete(donation)
+        }
+    }
 
     init {
         viewModelScope.launch {

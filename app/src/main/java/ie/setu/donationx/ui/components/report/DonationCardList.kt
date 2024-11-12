@@ -15,7 +15,8 @@ import java.text.DateFormat
 @Composable
 internal fun DonationCardList(
     donations: List<DonationModel>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDeleteDonation: (DonationModel) -> Unit
 ) {
     LazyColumn {
         items(
@@ -27,6 +28,7 @@ internal fun DonationCardList(
                 paymentAmount = donation.paymentAmount,
                 message = donation.message,
                 dateCreated = DateFormat.getDateTimeInstance().format(donation.dateDonated),
+                onClickDelete = { onDeleteDonation(donation) }
             )
         }
     }
@@ -38,6 +40,9 @@ internal fun DonationCardList(
 @Composable
 fun DonationCardListPreview() {
     DonationXTheme {
-        DonationCardList(fakeDonations.toMutableStateList())
+        DonationCardList(
+            fakeDonations.toMutableStateList(),
+            onDeleteDonation = {}
+        )
     }
 }

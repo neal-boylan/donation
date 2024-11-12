@@ -50,7 +50,11 @@ fun ReportScreen(modifier: Modifier = Modifier,
                 }
             } else {
                 DonationCardList(
-                    donations = donations
+                    donations = donations,
+                    onDeleteDonation = {
+                            donation: DonationModel
+                        -> reportViewModel.deleteDonation(donation)
+                    }
                 )
             }
         }
@@ -92,7 +96,8 @@ fun PreviewReportScreen(modifier: Modifier = Modifier,
                 }
             else
                 DonationCardList(
-                    donations = donations
+                    donations = donations,
+                    onDeleteDonation = {},
                 )
         }
     }
