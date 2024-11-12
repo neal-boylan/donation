@@ -27,11 +27,11 @@ fun NavHostProvider(
 
         composable(route = Donate.route) {
             //call our 'Donate' Screen Here
-            DonateScreen(modifier = modifier,donations = donations)
+            DonateScreen(modifier = modifier)
         }
         composable(route = Report.route) {
             //call our 'Report' Screen Here
-            ReportScreen(modifier = modifier, donations = donations)
+            ReportScreen(modifier = modifier)
         }
         composable(route = About.route) {
             //call our 'About' Screen Here

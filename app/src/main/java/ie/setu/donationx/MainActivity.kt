@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import ie.setu.donationx.data.DonationModel
 import ie.setu.donationx.navigation.NavHostProvider
 import ie.setu.donationx.navigation.Report
@@ -25,6 +26,7 @@ import ie.setu.donationx.ui.components.general.BottomAppBarProvider
 import ie.setu.donationx.ui.components.general.TopAppBarProvider
 import ie.setu.donationx.ui.theme.DonationXTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
